@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="dev.xascar.virginmoneydeveloperchallenge.ui.home.HomeFragment"
+        android:name="dev.xascar.virginmoneydeveloperchallenge.ui.people.PeopleFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_people" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="dev.xascar.virginmoneydeveloperchallenge.ui.dashboard.DashboardFragment"
+        android:name="dev.xascar.virginmoneydeveloperchallenge.ui.room.RoomFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_room" />
 </navigation>

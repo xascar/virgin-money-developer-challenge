@@ -1,8 +1,15 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    // Safe arguments to be passed in fragment
+    id 'androidx.navigation.safeargs'
+    id 'kotlin-parcelize'
+
+    // Kotlin and Kapt processor
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+
 }
 
 android {
@@ -57,9 +64,13 @@ dependencies {
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // OkHttp
     implementation 'com.google.okhttp:okhttp:20120626'
+
+    //Login interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
 
     // Hilt
     implementation "com.google.dagger:hilt-android:2.44"

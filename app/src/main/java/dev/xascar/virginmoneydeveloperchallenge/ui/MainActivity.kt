@@ -1,4 +1,4 @@
-package dev.xascar.virginmoneydeveloperchallenge
+package dev.xascar.virginmoneydeveloperchallenge.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,8 +7,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import dev.xascar.virginmoneydeveloperchallenge.R
 import dev.xascar.virginmoneydeveloperchallenge.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
