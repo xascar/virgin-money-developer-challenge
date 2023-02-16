@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    app:strokeColor="@color/cardview_dark_background"
+    app:strokeColor="#68ABF8"
+
     app:cardElevation="8dp"
     app:strokeWidth="1dp"
     app:cardCornerRadius="16dp"
