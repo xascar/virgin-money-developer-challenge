@@ -1,7 +1,12 @@
 package dev.xascar.virginmoneydeveloperchallenge.ui.people
 
+import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.xascar.virginmoneydeveloperchallenge.R
@@ -23,10 +28,12 @@ class PeopleAdapter(
                     .load(peopleModelItemModel.avatar)
                     .placeholder(R.drawable.animate_loading)
                     .centerCrop()
+                    .override(256,256)
                     .into(view.ivUserPic)
             }
             view.tvTitle.text = "${peopleModelItemModel.firstName} ${peopleModelItemModel.lastName}"
             view.tvDesc.text = peopleModelItemModel.jobtitle
+//            view.root.setBackgroundColor(view.root.resources.getColor(R.color.purple_700,view.root.resources.newTheme()))
         }
     }
 
