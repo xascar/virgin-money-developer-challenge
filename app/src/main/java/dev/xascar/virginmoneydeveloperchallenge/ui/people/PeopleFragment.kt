@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import dev.xascar.virginmoneydeveloperchallenge.data.model.people.PeopleModel
 import dev.xascar.virginmoneydeveloperchallenge.databinding.FragmentPeopleBinding
 import dev.xascar.virginmoneydeveloperchallenge.util.ResponseType
 
@@ -31,15 +31,14 @@ class PeopleFragment : Fragment() {
     ): View {
 
         _binding = FragmentPeopleBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         viewModel.result.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is ResponseType.Loading -> {
                     Toast.makeText(context, "Loading. . .!", Toast.LENGTH_SHORT).show()
                 }
                 is ResponseType.Success -> {
-                    Toast.makeText(context, it.data.toString(), Toast.LENGTH_SHORT).show()
+                    initViews(it.data)
                 }
                 is ResponseType.Error -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
@@ -49,7 +48,18 @@ class PeopleFragment : Fragment() {
 
         viewModel.getPeopleList()
 
-        return root
+        return binding.root
+    }
+
+    private fun initViews(data: PeopleModel?) {
+        data?.let {
+            binding.rvPeople.layoutManager = LinearLayoutManager(context)
+            binding.rvPeople.adapter = PeopleAdapter(
+                it
+            ) {
+
+            }
+        }
     }
 
     override fun onDestroyView() {
