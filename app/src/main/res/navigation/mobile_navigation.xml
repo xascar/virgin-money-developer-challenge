@@ -8,12 +8,12 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="dev.xascar.virginmoneydeveloperchallenge.ui.people.PeopleFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_people"
         tools:layout="@layout/fragment_people" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="dev.xascar.virginmoneydeveloperchallenge.ui.room.RoomFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_room"
         tools:layout="@layout/fragment_room" />
 </navigation>

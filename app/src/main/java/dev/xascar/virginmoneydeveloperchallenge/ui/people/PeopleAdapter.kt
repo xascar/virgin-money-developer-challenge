@@ -31,9 +31,11 @@ class PeopleAdapter(
                     .override(256,256)
                     .into(view.ivUserPic)
             }
-            view.tvTitle.text = "${peopleModelItemModel.firstName} ${peopleModelItemModel.lastName}"
+            view.tvTitle.text = peopleModelItemModel.firstName
             view.tvDesc.text = peopleModelItemModel.jobtitle
-//            view.root.setBackgroundColor(view.root.resources.getColor(R.color.purple_700,view.root.resources.newTheme()))
+            view.root.setOnClickListener {
+                clickListener(peopleModelItemModel)
+            }
         }
     }
 

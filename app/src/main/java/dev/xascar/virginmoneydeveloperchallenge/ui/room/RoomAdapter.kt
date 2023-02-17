@@ -1,8 +1,15 @@
 package dev.xascar.virginmoneydeveloperchallenge.ui.room
 
+import android.content.res.ColorStateList
+import android.content.res.Resources
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.compose.ui.res.integerResource
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
+import dev.xascar.virginmoneydeveloperchallenge.R
 import dev.xascar.virginmoneydeveloperchallenge.data.model.room.RoomModelItemModel
 import dev.xascar.virginmoneydeveloperchallenge.databinding.ItemRoomBinding
 import dev.xascar.virginmoneydeveloperchallenge.util.DateTimeUtil.toDate
@@ -14,8 +21,14 @@ class RoomAdapter(val roomList: ArrayList<RoomModelItemModel>) :
         fun setup(roomModelItemModel: RoomModelItemModel) {
             item.tvTitle.text = roomModelItemModel.id
             item.tvDate.text = roomModelItemModel.createdAt?.toDate("dd/MM/yyyy")
-            item.tvStatus.text =
-                if (roomModelItemModel.isOccupied == true) "Occupied" else "Available"
+            if (roomModelItemModel.isOccupied == true){
+                item.root.setCardBackgroundColor(ContextCompat.getColor(item.root.context,R.color.light_red))
+                item.tvStatus.text =  "Occupied"
+            }
+            else {
+                item.root.setCardBackgroundColor(ContextCompat.getColor(item.root.context,R.color.light_green))
+                item.tvStatus.text = "Available"
+            }
         }
 
     }

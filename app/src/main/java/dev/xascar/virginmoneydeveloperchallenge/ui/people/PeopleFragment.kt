@@ -1,14 +1,18 @@
 package dev.xascar.virginmoneydeveloperchallenge.ui.people
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import dev.xascar.virginmoneydeveloperchallenge.R
 import dev.xascar.virginmoneydeveloperchallenge.data.model.people.PeopleModel
 import dev.xascar.virginmoneydeveloperchallenge.databinding.FragmentPeopleBinding
 import dev.xascar.virginmoneydeveloperchallenge.util.ResponseType
@@ -22,7 +26,8 @@ class PeopleFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: PeopleViewModel by viewModels()
+    private val sharedViewModel: PeopleViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,10 +37,10 @@ class PeopleFragment : Fragment() {
 
         _binding = FragmentPeopleBinding.inflate(inflater, container, false)
 
-        viewModel.result.observe(viewLifecycleOwner) {
+        sharedViewModel.result.observe(viewLifecycleOwner) {
             when (it) {
                 is ResponseType.Loading -> {
-                    Toast.makeText(context, "Loading. . .!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Loading. . .", Toast.LENGTH_SHORT).show()
                 }
                 is ResponseType.Success -> {
                     initViews(it.data)
@@ -46,18 +51,25 @@ class PeopleFragment : Fragment() {
             }
         }
 
-        viewModel.getPeopleList()
+        sharedViewModel.getPeopleList()
 
         return binding.root
     }
 
     private fun initViews(data: PeopleModel?) {
+
+
+        parentFragmentManager.commit {
+            replace(R.id.fragment_details,DetailsFragment())
+        }
+
+
+
         data?.let {
             binding.rvPeople.layoutManager = LinearLayoutManager(context)
-            binding.rvPeople.adapter = PeopleAdapter(
-                it
-            ) {
-
+            binding.rvPeople.adapter = PeopleAdapter(it) { selectedUser ->
+                Log.d("PeopleFragment", "initViews: ")
+                sharedViewModel.selectUser(selectedUser)
             }
         }
     }
