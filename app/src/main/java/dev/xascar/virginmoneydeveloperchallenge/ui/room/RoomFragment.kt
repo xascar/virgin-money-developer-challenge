@@ -9,10 +9,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import dev.xascar.virginmoneydeveloperchallenge.data.model.room.RoomModel
 import dev.xascar.virginmoneydeveloperchallenge.databinding.FragmentRoomBinding
 import dev.xascar.virginmoneydeveloperchallenge.util.ResponseType
-import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class RoomFragment : Fragment() {
@@ -52,7 +54,9 @@ class RoomFragment : Fragment() {
     private fun initView(data: RoomModel?) {
         data?.let {
             binding.rvRoom.apply {
-                layoutManager =  LinearLayoutManager(context)
+                // staggeredGridLayoutManager with 3 rows and horizontal orientation
+                layoutManager =  StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
+//                layoutManager =  LinearLayoutManager(context)
                 adapter = RoomAdapter(it)
             }
         }

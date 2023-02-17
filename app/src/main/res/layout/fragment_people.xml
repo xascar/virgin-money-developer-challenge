@@ -10,7 +10,6 @@
         android:id="@+id/rv_people"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DAE9FA"
         tools:listitem="@layout/item_people"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="15" />
